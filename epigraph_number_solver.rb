@@ -21,7 +21,7 @@ def main
     p2.try_solve(character_map: character_map)
   end
 
-  solutions = p1.successful_character_value_maps & p2.successful_character_value_maps
+  solutions = p1.successful_character_maps & p2.successful_character_maps
 
   puts "Works for both puzzles:"
   solutions.each do |solution|
@@ -38,10 +38,10 @@ def main
 end
 
 class Puzzle
-  attr_reader :successful_character_value_maps
+  attr_reader :successful_character_maps
   def initialize(rows)
     @row_one, @row_two, @row_three = *rows
-    @successful_character_value_maps = []
+    @successful_character_maps = []
   end
 
   def try_solve(character_map:)
@@ -50,7 +50,7 @@ class Puzzle
     row_three_number = character_map.make_number(@row_three)
 
     if row_one_number + row_two_number == row_three_number
-      @successful_character_value_maps << character_map
+      @successful_character_maps << character_map
       return true
     else
       return false
